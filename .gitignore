@@ -26,3 +26,6 @@ todos.json
 
 # Vercel
 .vercel
+
+# Local Netlify folder
+.netlify
