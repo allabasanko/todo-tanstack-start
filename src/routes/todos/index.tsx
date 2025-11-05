@@ -179,8 +179,8 @@ function TodosPage() {
                   onClick={() => {
                     console.log(row.original.id, 'row id')
                     navigate({
-                      to: '/todos/$id',
-                      params: { id: row.original.id.toString() },
+                      to: '/todos/$todoId',
+                      params: { todoId: row.original.id.toString() },
                     })
                   }}
                 >
