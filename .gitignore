@@ -1,14 +1,28 @@
+# Node
 node_modules
 .DS_Store
+
+# Build outputs
 dist
 dist-ssr
-*.local
-count.txt
-.env
-.nitro
-.tanstack
-.wrangler
 .output
+.nitro
 .vinxi
-todos.json
+.tanstack
 .vercel/output
+
+# Env & local configs
+*.local
+.env
+.env.*
+.vscode
+.idea
+
+# Tools / caches
+.cache
+.wrangler
+count.txt
+todos.json
+
+# Vercel
+.vercel
