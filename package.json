@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "vite build --preset vercel",
-    "start": "node .output/server/index.mjs",
+    "build": "vite build",
+    "start": "vite preview",
     "serve": "vite preview",
     "test": "vitest run",
     "lint": "eslint",
@@ -46,6 +46,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@netlify/vite-plugin-tanstack-start": "^1.1.9",
     "@tanstack/devtools-event-client": "^0.3.2",
     "@tanstack/eslint-config": "^0.3.0",
     "@testing-library/dom": "^10.4.0",
