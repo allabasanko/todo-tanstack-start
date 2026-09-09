@@ -10,4 +10,4 @@
   for = "/*"
 
   [headers.values]
-    Content-Security-Policy = "default-src * 'unsafe-inline' 'unsafe-eval'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
