@@ -38,7 +38,7 @@ const TodosTodoIdEditRoute = TodosTodoIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/todos/$todoId': typeof TodosTodoIdRouteWithChildren
-  '/todos': typeof TodosIndexRoute
+  '/todos/': typeof TodosIndexRoute
   '/todos/$todoId/edit': typeof TodosTodoIdEditRoute
 }
 export interface FileRoutesByTo {
@@ -56,7 +56,7 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/todos/$todoId' | '/todos' | '/todos/$todoId/edit'
+  fullPaths: '/' | '/todos/$todoId' | '/todos/' | '/todos/$todoId/edit'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/todos/$todoId' | '/todos' | '/todos/$todoId/edit'
   id: '__root__' | '/' | '/todos/$todoId' | '/todos/' | '/todos/$todoId/edit'
@@ -80,7 +80,7 @@ declare module '@tanstack/react-router' {
     '/todos/': {
       id: '/todos/'
       path: '/todos'
-      fullPath: '/todos'
+      fullPath: '/todos/'
       preLoaderRoute: typeof TodosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

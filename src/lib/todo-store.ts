@@ -1,4 +1,4 @@
-import { Derived, Store } from '@tanstack/store'
+import { Store, createAtom } from '@tanstack/store'
 import { useSyncExternalStore } from 'react'
 import type { Todo } from '@/data/todo-data'
 
@@ -8,7 +8,7 @@ export const todoStore = new Store({
   error: null as string | null,
 })
 
-export const stats = new Derived({
+export const stats = createAtom({
   fn: () => {
     const todos = todoStore.state.todos
     return {
@@ -21,11 +21,12 @@ export const stats = new Derived({
   deps: [todoStore],
 })
 
-stats.mount()
-
 export function useTodoStore() {
   return useSyncExternalStore(
-    todoStore.subscribe,
+    (onStoreChange) => {
+      const subscription = todoStore.subscribe(onStoreChange)
+      return () => subscription.unsubscribe()
+    },
     () => todoStore.state,
     () => todoStore.state,
   )

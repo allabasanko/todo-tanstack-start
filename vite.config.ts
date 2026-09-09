@@ -13,11 +13,9 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart(),
-    netlify(),
+    process.env.NETLIFY === 'true' ? netlify() : undefined,
     viteReact({
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
+      compiler: true,
     }),
   ],
 })

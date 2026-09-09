@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { stats, todoStore } from './todo-store'
 
 type EventMap = {
-  'todo-store-devtools:state': {
+  state: {
     total: number
     completed: number
     pending: number
@@ -24,32 +24,34 @@ class StoreDevtoolsEventClient extends EventClient<EventMap> {
 const sdec = new StoreDevtoolsEventClient()
 
 todoStore.subscribe(() => {
+  const currentStats = stats.get()
+
   sdec.emit('state', {
-    total: stats.state.total,
-    completed: stats.state.completed,
-    pending: stats.state.pending,
-    inProgress: stats.state.inProgress,
+    total: currentStats.fn().total,
+    completed: currentStats.fn().completed,
+    pending: currentStats.fn().pending,
+    inProgress: currentStats.fn().inProgress,
     isLoading: todoStore.state.isLoading,
     error: todoStore.state.error,
   })
 })
 
 console.log('Emit new state', {
-  total: stats.state.total,
-  completed: stats.state.completed,
-  pending: stats.state.pending,
-  inProgress: stats.state.inProgress,
+  total: stats.get().fn().total,
+  completed: stats.get().fn().completed,
+  pending: stats.get().fn().pending,
+  inProgress: stats.get().fn().inProgress,
   isLoading: todoStore.state.isLoading,
   error: todoStore.state.error,
 })
 
 function TodoDevtoolPanel() {
-  const [state, setState] = useState<EventMap['todo-store-devtools:state']>(
+  const [state, setState] = useState<EventMap['state']>(
     () => ({
-      total: stats.state.total,
-      completed: stats.state.completed,
-      pending: stats.state.pending,
-      inProgress: stats.state.inProgress,
+      total: stats.get().fn().total,
+      completed: stats.get().fn().completed,
+      pending: stats.get().fn().pending,
+      inProgress: stats.get().fn().inProgress,
       isLoading: todoStore.state.isLoading,
       error: todoStore.state.error,
     }),
